@@ -21,8 +21,8 @@ public interface BaseDao<T extends BaseVO, Id extends Serializable> {
     /**
      * 插入单条数据
      *
-     * @param entity
-     * @return
+     * @param entity 实体
+     * @return 主键
      */
     int insertEntity(@Param("entity") T entity);
 
