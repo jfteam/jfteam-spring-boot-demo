@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <property name="APP_NAME" value="session-redis-demo"/>
+    <property name="LOG_HOME" value="/Users/fengwenping/Workspace/IdeaProjects/applogs/${APP_NAME}/logs"/>
+    <property name="BACKUP_HOME" value="${LOG_HOME}/backup"/>
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n"/>
+
+    <!-- 开发环境 -->
+    <springProfile name="dev,sit,uat">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <logger name="com.jfteam" level="info"/>
+
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <!-- 生产环境 -->
+    <springProfile name="pro,prod">
+        <!-- 每天产生一个文件 -->
+        <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 文件路径 -->
+            <file>${LOG_HOME}/info.log.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- 文件名称 -->
+                <fileNamePattern>${BACKUP_HOME}/info-%d{yyyyMMddHH}.log</fileNamePattern>
+                <!-- 文件最大保存历史数量 -->
+                <MaxHistory>100</MaxHistory>
+            </rollingPolicy>
+
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>${LOG_PATTERN}</pattern>
+            </layout>
+        </appender>
+
+        <root level="info">
+            <appender-ref ref="INFO"/>
+        </root>
+    </springProfile>
+</configuration>

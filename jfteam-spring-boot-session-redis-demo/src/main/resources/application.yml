@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: demo
+  profiles:
+    active: dev
+  redis:
+    host: locahost
+    port: 6379
+server:
+  context-path: /${spring.application.name}
+  port: 9091
