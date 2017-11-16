@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <property name="APP_NAME" value="session-redis-demo"/>
+    <property name="LOG_HOME" value="/Users/fengwenping/Workspace/IdeaProjects/applogs/${APP_NAME}/logs"/>
+    <property name="BACKUP_HOME" value="${LOG_HOME}/backup"/>
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+
+    <!-- 开发环境 -->
+    <springProfile name="dev,sit,uat">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <logger name="org.springframework" level="warn" additivity="true"></logger>
+        <logger name="org.apache" level="warn" additivity="true"></logger>
+        <logger name="org.hibernate" level="warn" additivity="true"></logger>
+
+        <!--log4jdbc start-->
+        <logger name="jdbc.sqlonly" level="error" additivity="true"></logger>
+        <logger name="jdbc.audit" level="error" additivity="true"></logger>
+        <logger name="jdbc.resultset" level="error" additivity="true"></logger>
+        <logger name="jdbc.resultsettable" level="error" additivity="true"></logger>
+        <logger name="jdbc.connection" level="error" additivity="true"></logger>
+        <logger name="jdbc.sqltiming" level="info" additivity="true"></logger>
+        <!--log4jdbc end-->
+        <logger name="com.jfteam" level="info"/>
+
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+    <!-- 生产环境 -->
+    <springProfile name="pro,prod">
+        <!-- 每天产生一个文件 -->
+        <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 文件路径 -->
+            <file>${LOG_HOME}/info.log.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- 文件名称 -->
+                <fileNamePattern>${BACKUP_HOME}/info-%d{yyyyMMddHH}.log</fileNamePattern>
+                <!-- 文件最大保存历史数量 -->
+                <MaxHistory>100</MaxHistory>
+            </rollingPolicy>
+
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>${LOG_PATTERN}</pattern>
+            </layout>
+        </appender>
+
+        <logger name="org.springframework" level="warn" additivity="true"></logger>
+        <logger name="org.apache" level="warn" additivity="true"></logger>
+        <logger name="org.hibernate" level="warn" additivity="true"></logger>
+
+        <!--log4jdbc start-->
+        <logger name="jdbc.sqlonly" level="error" additivity="true"></logger>
+        <logger name="jdbc.audit" level="error" additivity="true"></logger>
+        <logger name="jdbc.resultset" level="error" additivity="true"></logger>
+        <logger name="jdbc.resultsettable" level="error" additivity="true"></logger>
+        <logger name="jdbc.connection" level="error" additivity="true"></logger>
+        <logger name="jdbc.sqltiming" level="error" additivity="true"></logger>
+        <!--log4jdbc end-->
+        <logger name="com.jfteam" level="error"/>
+        <!--log4jdbc end-->
+        <root level="info">
+            <appender-ref ref="INFO_FILE"/>
+        </root>
+    </springProfile>
+</configuration>

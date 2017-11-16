@@ -9,7 +9,7 @@ package com.jfteam.framework.datasource;
  */
 public class DataSourceType {
 
-    public static final String DATASOURCE_PRIMARY = "datasource_primary";
+    public static final String DATASOURCE_MASTER = "datasource_master";
 
     public static final String DATASOURCE_SLAVE = "datasource_slave";
 }

@@ -1,5 +1,8 @@
 package com.jfteam.framework.datasource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Created with IntelliJ IDEA.
  * Description: 数据源持有者,切换工具
@@ -9,6 +12,8 @@ package com.jfteam.framework.datasource;
  */
 public class DataSourceContextHolder {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceContextHolder.class);
+
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
 
     /**
@@ -17,6 +22,9 @@ public class DataSourceContextHolder {
      * @param dataSourceType
      */
     public static void setDataSourceType(String dataSourceType) {
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("设置当前数据源为: {}", dataSourceType);
+        }
         contextHolder.set(dataSourceType);
     }
 
@@ -26,6 +34,9 @@ public class DataSourceContextHolder {
      * @return
      */
     public static String getDataSourceType() {
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("系统当前数据源为: {}", contextHolder.get());
+        }
         return contextHolder.get();
     }
 
@@ -33,6 +44,9 @@ public class DataSourceContextHolder {
      * 移除数据源,恢复默认数据源
      */
     public static void clearDataSourceType() {
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("恢复当前数据源为默认数据源.");
+        }
         contextHolder.remove();
     }
 }
