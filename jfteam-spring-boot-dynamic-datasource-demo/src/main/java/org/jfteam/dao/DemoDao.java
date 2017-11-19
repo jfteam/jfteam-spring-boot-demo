@@ -1,0 +1,1 @@
+package org.jfteam.dao;import org.jfteam.framework.dao.BaseDao;import org.jfteam.vo.DemoVO;public interface DemoDao extends BaseDao<DemoVO, Integer> {}

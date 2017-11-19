@@ -1,0 +1,1 @@
+package org.jfteam.service;import org.jfteam.framework.page.PageBean;import org.jfteam.framework.page.PageParam;import org.jfteam.vo.DemoVO;/** * Created with IntelliJ IDEA. * Description: * User: fengwenping * Date: 2017-10-29 * Time: 下午7:49 */public interface DemoService {    PageBean<DemoVO> queryPageDemo(DemoVO demoVO, PageParam pageParam);}
