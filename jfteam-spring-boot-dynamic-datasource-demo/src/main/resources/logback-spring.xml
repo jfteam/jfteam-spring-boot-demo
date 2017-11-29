@@ -27,6 +27,7 @@
         <logger name="jdbc.sqltiming" level="info" additivity="true"></logger>
         <!--log4jdbc end-->
         <logger name="org.jfteam" level="info"/>
+        <logger name="org.jfteam.framework" level="warn"/>
 
         <root level="info">
             <appender-ref ref="CONSOLE"/>

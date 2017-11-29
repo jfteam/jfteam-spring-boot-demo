@@ -2,6 +2,7 @@ package org.jfteam.framework.datasource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,10 +23,12 @@ public class DataSourceContextHolder {
      * @param dataSourceType
      */
     public static void setDataSourceType(String dataSourceType) {
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("设置当前数据源为: {}", dataSourceType);
+        if (StringUtils.hasText(dataSourceType)) {
+            contextHolder.set(dataSourceType);
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("设置当前数据源为: {}", dataSourceType);
+            }
         }
-        contextHolder.set(dataSourceType);
     }
 
     /**
@@ -35,7 +38,11 @@ public class DataSourceContextHolder {
      */
     public static String getDataSourceType() {
         if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("系统当前数据源为: {}", contextHolder.get());
+            if (StringUtils.hasText(contextHolder.get())) {
+                LOGGER.info("系统当前数据源为: {}", contextHolder.get());
+            } else {
+                LOGGER.info("系统当前数据源为默认数据源: {}", DataSourceType.DATASOURCE_MASTER);
+            }
         }
         return contextHolder.get();
     }
