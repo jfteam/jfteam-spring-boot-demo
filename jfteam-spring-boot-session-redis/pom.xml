@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jfteam-spring-boot-session-redis-demo</artifactId>
+    <artifactId>jfteam-spring-boot-session-redis</artifactId>
     <packaging>jar</packaging>
 
-    <name>jfteam-spring-boot-session-redis-demo</name>
+    <name>jfteam-spring-boot-session-redis</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
