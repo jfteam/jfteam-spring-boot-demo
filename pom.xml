@@ -11,6 +11,7 @@
         <module>jfteam-spring-boot-rest-template</module>
         <module>jfteam-spring-boot-dynamic-datasource</module>
         <module>jfteam-spring-boot-kafka</module>
+        <module>jfteam-spring-boot-data-jpa</module>
     </modules>
     <packaging>pom</packaging>
 
