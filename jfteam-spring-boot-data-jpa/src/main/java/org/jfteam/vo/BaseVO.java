@@ -1,5 +1,7 @@
 package org.jfteam.vo;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +12,7 @@ import java.util.Date;
  * Date: 2018-07-17
  * Time: 下午10:56
  */
+@MappedSuperclass
 public class BaseVO implements Serializable {
 
     private Long createdBy;

@@ -1,6 +1,7 @@
 package org.jfteam.web.controller;
 
 import org.jfteam.service.LookupClassifyService;
+import org.jfteam.vo.LookupClassifyVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +21,8 @@ public class LookupClassifyController {
 
     @Autowired
     private LookupClassifyService lookupClassifyService;
+
+    public LookupClassifyVO create(LookupClassifyVO lookupClassifyVO) {
+        return lookupClassifyVO;
+    }
 }

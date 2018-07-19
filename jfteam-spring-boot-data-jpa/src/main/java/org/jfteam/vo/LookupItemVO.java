@@ -11,8 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "sys_lookup_item")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class LookupItemVO {
+public class LookupItemVO extends BaseVO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long itemId;
