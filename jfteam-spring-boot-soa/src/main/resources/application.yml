@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: demo
+  profiles:
+    active: dev
+
+server:
+  context-path: /${spring.application.name}
+  port: 9096
